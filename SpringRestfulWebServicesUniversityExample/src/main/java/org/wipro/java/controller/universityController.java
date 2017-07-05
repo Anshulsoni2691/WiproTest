@@ -52,9 +52,9 @@ UniversityService universityService = new UniversityService();
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addStudent", method = RequestMethod.POST, headers = "Accept=application/json")
-	public void addStudent(@RequestParam(value="universityName", required=true) String universityName,@RequestParam(value="studentName", required=false) String coursesName,
+	public void addStudent(@RequestParam(value="universityName", required=true) String universityName,@RequestParam(value="coursesName", required=false) String coursesName,
 	        @RequestParam(value="studentName", required=false) String studentName) throws JsonParseException, JsonMappingException, IOException {
-		universityService.addStudent(universityName, studentName );
+		universityService.addStudent(universityName, studentName,coursesName );
 	}
 	
 	/**

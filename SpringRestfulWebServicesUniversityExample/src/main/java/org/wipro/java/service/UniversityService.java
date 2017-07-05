@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.client.RestTemplate;
 import org.wipro.java.bean.Courses;
@@ -60,11 +61,12 @@ public class UniversityService {
 	 * 
 	 * @param universityName
 	 * @param studentName
+	 * @param coursesName 
 	 * @throws JsonParseException
 	 * @throws JsonMappingException
 	 * @throws IOException
 	 */
-	public void addStudent(String universityName, String studentName)
+	public void addStudent(String universityName, String studentName, String coursesName)
 			throws JsonParseException, JsonMappingException, IOException {
 		University universityTemp = new University();
 		List<University> universityListtemp = getAllUniversity();
@@ -74,11 +76,12 @@ public class UniversityService {
 		while (iter.hasNext()) {
 			universityTemp = iter.next();
 			if (universityTemp.getName().equalsIgnoreCase(universityName)) {
-				Student studnt = new Student();
-				studnt.setName(studentName);
+				Student student = new Student();
+				student.setName(studentName);
+				student.setRollNumber((int) (Math.random()* 50 + 1));
 				Courses courses = new Courses();
-				courses.setCourseName("Maths");
-				studentList.add(studnt);
+				courses.setCourseName(coursesName);
+				studentList.add(student);
 				courses.setStudent(studentList);
 				universityTemp.setCourses(courses);
 			}
